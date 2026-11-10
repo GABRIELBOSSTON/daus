@@ -17,7 +17,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   // 1. Cek izin registrasi
-  if (process.env.ALLOW_REGISTRATION !== 'true') {
+  if (process.env.ALLOW_REGISTRATION?.trim().toLowerCase() !== 'true') {
     return NextResponse.json(
       { error: 'Registrasi dinonaktifkan (ALLOW_REGISTRATION=false)' },
       { status: 403 }
@@ -70,7 +70,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   // 1. Cek izin registrasi
-  if (process.env.ALLOW_REGISTRATION !== 'true') {
+  if (process.env.ALLOW_REGISTRATION?.trim().toLowerCase() !== 'true') {
     return NextResponse.json(
       { error: 'Registrasi dinonaktifkan (ALLOW_REGISTRATION=false)' },
       { status: 403 }
